@@ -14,11 +14,16 @@ export class MembersComponent implements OnInit {
     id: 1,
     name: '김진호'
   };
+  selectedMember: Member;
 
   constructor() { }
 
   // life cycle method.
   ngOnInit(): void {
+  }
+
+  onSelect(member: Member): void {
+    this.selectedMember = member;
   }
 
 }
