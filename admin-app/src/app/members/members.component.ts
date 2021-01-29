@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Member } from '../member';
-import { MEMBERS } from '../mock-members';
+import { MemberService } from '../member.service';
 
 @Component({
   selector: 'app-members',
@@ -9,21 +9,22 @@ import { MEMBERS } from '../mock-members';
 })
 export class MembersComponent implements OnInit {
 
-  members = MEMBERS;
-  member: Member = {
-    id: 1,
-    name: '김진호'
-  };
+  members: Member[];
   selectedMember: Member;
 
-  constructor() { }
+  constructor(private memberService: MemberService) { }
 
-  // life cycle method.
+  // life cycle method；コンポーネントが初期化される際に実行されるメソッド
   ngOnInit(): void {
+    this.getMembers();
   }
 
   onSelect(member: Member): void {
     this.selectedMember = member;
+  }
+
+  getMembers(): void {
+    this.members = this.memberService.getMembers();
   }
 
 }
